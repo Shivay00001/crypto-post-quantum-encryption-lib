@@ -1,5 +1,9 @@
-FROM rust:1.70
+FROM python:3.11-slim
+
 WORKDIR /app
+
+RUN pip install --no-cache-dir numpy
+
 COPY . .
-RUN cargo build --release
-CMD ["./target/release/crypto-post-quantum-encryption-lib"]
+
+ENTRYPOINT ["python", "src/main.py"]
